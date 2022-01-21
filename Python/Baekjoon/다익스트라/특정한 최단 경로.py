@@ -30,3 +30,8 @@ def dijkstra(start):
                 distance[i[0]] = cost
                 heapq.heappush(q, (cost, i[0]))
     return distance
+
+
+result = min(dijkstra(0)[haveToA-1]+dijkstra(haveToA-1)[haveToB-1]+dijkstra(haveToB-1)
+             [n-1], dijkstra(0)[haveToB-1]+dijkstra(haveToB-1)[haveToA-1]+dijkstra(haveToA-1)[n-1])
+print(result if result != INF else -1)

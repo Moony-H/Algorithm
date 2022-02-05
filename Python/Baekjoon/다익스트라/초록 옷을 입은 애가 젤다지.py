@@ -5,23 +5,23 @@ input = sys.stdin.readline
 
 
 def dijkstra(table):
-    distance = [[INF for _ in range(len(table))]for _ in range(len(table))]
+    length = len(table)
+    distance = [[INF for _ in range(length)]for _ in range(length)]
     distance[0][0] = table[0][0]
     que = []
     heapq.heappush(que, (table[0][0], 0, 0))
     UDLR = [[0, -1], [0, 1], [-1, 0], [1, 0]]
     while que:
         cost, x, y = heapq.heappop(que)
-        if x == len(table)-1 and y == len(table)-1:
-            break
+
         if distance[y][x] < cost:
             continue
         for i in UDLR:
             dx = x+i[0]
             dy = y+i[1]
-            if dx < 0 or dx >= len(table) or dy < 0 or dy >= len(table):
+            if dx < 0 or dx >= length or dy < 0 or dy >= length:
                 continue
-            if distance[dy][dx] < table[dy][dx]+cost:
+            if distance[dy][dx] <= table[dy][dx]+cost:
                 continue
             distance[dy][dx] = cost+table[dy][dx]
             heapq.heappush(que, (distance[dy][dx], dx, dy))

@@ -17,10 +17,13 @@ start, end = map(int, input().split())
 que = []
 heappush(que, (0, start, [start]))
 distance = [INF for _ in range(n+1)]
+visited = [False for _ in range(n+1)]
 distance[start] = 0
 
 while que:
     cost, node, path = heappop(que)
+    if visited[node]:
+        continue
     if node == end:
         print(distance[end])
         print(len(path))
@@ -28,8 +31,10 @@ while que:
         break
     if distance[node] < cost:
         continue
+    visited[node] = True
     for i in graph[node]:
         if distance[i[0]] < cost+i[1]:
             continue
+
         distance[i[0]] = cost+i[1]
         heappush(que, (distance[i[0]], i[0], path+[i[0]]))

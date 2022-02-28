@@ -1,0 +1,30 @@
+def dfs(v, n, depth, queens):
+    count = 0
+    if depth == 0:
+        return 1
+    for y in range(v, n):
+        for x in range(n):
+            isStop = False
+            for position in queens:
+                if x == position[0]:
+
+                    isStop = True
+                    break
+                if abs(y-position[1]) == abs(x-position[0]):
+
+                    isStop = True
+                    break
+            if isStop:
+
+                continue
+            queens.append((x, y))
+
+            count += dfs(y+1, n, depth-1, queens)
+            queens.pop()
+
+    return count
+
+
+n = int(input())
+
+print(dfs(0, n, n, []))

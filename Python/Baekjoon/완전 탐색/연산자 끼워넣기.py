@@ -16,17 +16,17 @@ def dfs(p, m, mul, d, result, arr, depth):
         minimum = min(minimum, result)
         return
     if p > 0:
-        result += arr[depth]
-        dfs(p-1, m, mul, d, result, arr, depth+1)
+
+        dfs(p-1, m, mul, d, result+arr[depth], arr, depth+1)
     if m > 0:
-        result -= arr[depth]
-        dfs(p, m-1, mul, d, result, arr, depth+1)
+
+        dfs(p, m-1, mul, d, result-arr[depth], arr, depth+1)
     if mul > 0:
-        result *= arr[depth]
-        dfs(p, m, mul-1, d, result, arr, depth+1)
+
+        dfs(p, m, mul-1, d, result*arr[depth], arr, depth+1)
     if d > 0:
-        result //= arr[depth]
-        dfs(p, m, mul, d-1, result, arr, depth+1)
+
+        dfs(p, m, mul, d-1, int(result/arr[depth]), arr, depth+1)
 
 
 n = int(input())

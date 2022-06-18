@@ -1,0 +1,65 @@
+
+import java.util.*
+
+fun main(){
+    val s=Solution()
+    val nodeAndEdge= readLine()?.split(" ")!!
+    val node=nodeAndEdge[0].toInt()
+    val edge=nodeAndEdge[1].toInt()
+    val start= readLine()!!.toInt()
+
+    val graph= Array(node+1){
+        mutableListOf<Pair<Int,Int>>()
+    }
+    for(i in 0 until edge){
+
+        val nums=readLine()!!.split(" ")
+        graph[nums[0].toInt()].add(Pair(nums[1].toInt(),nums[2].toInt()))
+    }
+
+    val answer=s.solution(graph,start)
+}
+class Solution {
+
+    fun diji(){
+
+    }
+
+    fun solution(graph:Array<MutableList<Pair<Int,Int>>>,start:Int):String{
+        val INF=999999
+        val que=PriorityQueue<Pair<Int,Int>>{a,b->
+            when{
+                a.second>b.second-> 1
+                a.second<b.second->-1
+                else-> 0
+            }
+        }
+        que.add(Pair(start,0))
+        val distance=IntArray(graph.size){INF}
+        distance[start]=0
+        while(que.isNotEmpty()) {
+
+            val temp = que.poll()
+            val node = temp.first
+            val cost = temp.second
+            graph[node].forEach {
+                val next=it.first
+                val nCost=it.second
+                if(distance[next]<nCost+cost){
+                    return@forEach
+                }
+                distance[next]=nCost+cost
+                que.add(Pair(next,distance[next]))
+            }
+        }
+        for(i in 1 until distance.size){
+            if(distance[i]==INF){
+                println("INF")
+                continue
+            }
+            println(distance[i])
+        }
+
+        return ""
+    }
+}

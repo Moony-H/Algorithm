@@ -10,7 +10,6 @@ for _ in range(t):
     for _ in range(n):
         participant.append(list(map(int,input().split())))
     participant.sort(key= lambda x:x[0])
-    print(participant)
     m=100001
     for i in participant:
         m=min(i[1],m)

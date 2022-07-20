@@ -21,4 +21,3 @@ for i in range(len(answers)):
         continue
     print(answers[i], end=", ")
     
-

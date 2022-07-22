@@ -1,17 +1,16 @@
-from re import L
 import sys
 
 input=sys.stdin.readline
 sys.setrecursionlimit(10000)
 flower=[[0,0],[-1,0],[0,-1],[1,0],[0,1]]
 answer=int(1e9)
-def dfs(centerPosition,table,costTable,cost,depth):
+def dfs(table,costTable,cost,depth):
     global answer
     if depth==0:
         answer=min(answer,cost)
         return
-    for y in range(centerPosition[0],len(table)):
-        for x in range(centerPosition[1],len(table)):
+    for y in range(len(table)):
+        for x in range(len(table)):
             empty=[]
             for i in flower:
                 dx=x+i[1]
@@ -29,7 +28,7 @@ def dfs(centerPosition,table,costTable,cost,depth):
                 n+=costTable[i[0]][i[1]]
                 table[i[0]][i[1]]=-1
             
-            dfs((y,x),table,costTable,n,depth-1)
+            dfs(table,costTable,n,depth-1)
             for i in empty:
                 table[i[0]][i[1]]=0
         
@@ -42,12 +41,6 @@ costTable=[]
 for i in range(n):
     costTable.append(list(map(int,input().split())))
     
-dfs((0,0),table,costTable,0,3)
+dfs(table,costTable,0,3)
 
 print(answer)
-    
-    
-
-
-
-

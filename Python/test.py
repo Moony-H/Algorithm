@@ -15,35 +15,35 @@ def move(table,dir):
     if(dir==0):
         #왼쪽
         for i in range(len(temp)):
-            for j in range(len(temp)-1):
-                if temp[i][j]!=temp[i][j+1] and temp[i][j]!=0:
+            for j in range(len(temp)-1,0,-1):
+                if temp[i][j]!=temp[i][j-1] and temp[i][j-1]!=0:
                     continue
-                temp[i][j]+=temp[i][j+1]
-                temp[i][j+1]=0
+                temp[i][j-1]+=temp[i][j]
+                temp[i][j-1]=0
     if(dir==1):
         #오른쪽
         for i in range(len(temp)):
-            for j in range(len(temp)-1,0,-1):
-                if temp[i][j]!=temp[i][j-1] and temp[i][j]!=0:
+            for j in range(len(temp)-1):
+                if temp[i][j]!=temp[i][j+1] and temp[i][j+1]!=0:
                     continue
-                temp[i][j]+=temp[i][j-1]
-                temp[i][j-1]=0
+                temp[i][j+1]+=temp[i][j]
+                temp[i][j]=0
     if(dir==2):
         #위
         for i in range(len(temp)):
-            for j in range(len(temp)-1):
-                if temp[j][i]!=temp[j+1][i] and temp[j][i]!=0:
+            for j in range(len(temp)-1,0,-1):
+                if temp[j][i]!=temp[j-1][i] and temp[j-1][i]!=0:
                     continue
-                temp[j][i]+=temp[j+1][i]
-                temp[j+1][i]=0
+                temp[j-1][i]+=temp[j][i]
+                temp[j][i]=0
     if(dir==3):
         #아래
         for i in range(len(temp)):
-            for j in range(len(temp)-1,0,-1):
-                if temp[j][i]!=temp[j-1][i] and temp[j][i]!=0:
+            for j in range(len(temp)-1):
+                if temp[j][i]!=temp[j+1][i] and temp[j+1][i]!=0:
                     continue
-                temp[j][i]+=temp[j-1][i]
-                temp[j-1][i]=0
+                temp[j+1][i]+=temp[j][i]
+                temp[j][i]=0
     return temp
 
 

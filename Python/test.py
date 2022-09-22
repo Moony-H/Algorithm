@@ -1,37 +1,38 @@
 
 import sys
-from collections import deque
 
 input=sys.stdin.readline
 
 n=int(input().rstrip())
 mask=0
 for i in range(n):
-    cmd,num=input().rstrip().split()
-    num=int(num)
-    if(cmd=='add'):
-        mask=mask&1<<num
-
-    elif cmd=='remove':
-        mask=mask&~(1<<num)
-    elif cmd=='check':
-        if((mask&1<<num)):
-            print(1)
+    temp=list(input().rstrip().split())
+    if len(temp)==1:
+        if temp[0]=='all':
+            mask=0b111111111111111111111
+            print(mask)
         else:
-            print(0)
-
-    elif cmd=='toggle':
-        if(mask&1<<num):
-            mask=mask&~(1<<num)
-        else:
+            mask=0
+    else:
+        num=int(temp[1])
+        cmd=temp[0]
+        if(cmd=='add'):
             mask=mask&1<<num
 
-    elif cmd=='all':
-        mask=0
-        for j in range(1,21):
-            mask+=1<<j
-    else:
-        mask=0
+        elif cmd=='remove':
+            mask=mask&~(1<<num)
+        elif cmd=='check':
+            if((mask&1<<num)):
+                print(1)
+            else:
+                print(0)
 
-        
+        elif cmd=='toggle':
+            if(mask&1<<num):
+                mask=mask&~(1<<num)
+            else:
+                mask=mask&1<<num
+
+   
+
 

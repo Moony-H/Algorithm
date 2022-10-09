@@ -1,5 +1,3 @@
-
-
 from itertools import permutations
 
 n=int(input())

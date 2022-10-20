@@ -26,7 +26,3 @@ for _ in range(m):
 
 for i in answers:
     print(i)
-
-
-
-

@@ -1,2 +1,20 @@
+from collections import deque
+
 def solution(n, m, section):
-    return (section[-1]-section[0]+1)//m + (1 if (section[-1]-section[0]+1)%m!=0 else 0)
+    answer=0
+    que=deque()
+    for i in section:
+        que.append(i)
+    while que:
+        answer+=1
+        val=que.popleft()
+        index=0
+        for i in que:
+            if(i-val+1)>m:
+                break
+            index+=1
+        for i in range(index):
+            que.popleft()
+        
+    return answer
+        

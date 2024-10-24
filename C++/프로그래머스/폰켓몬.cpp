@@ -19,8 +19,5 @@ int solution(vector<int> nums)
         answer+=1;
     }
     
-    if(answer>a){
-        return a;
-    }
-    return answer;
+    return answer>a?a:answer;
 }

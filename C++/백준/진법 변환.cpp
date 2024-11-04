@@ -7,7 +7,6 @@ int main()
 {
     long n = 0;
     int b = 0;
-    cout << "fuck" << endl;
     string answer = "";
     cin >> n >> b;
     while (n != 0)
@@ -17,5 +16,7 @@ int main()
 
         n = n / b;
     }
+
+    reverse(answer.begin(), answer.end());
     cout << answer << endl;
 }

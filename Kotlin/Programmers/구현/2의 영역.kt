@@ -1,12 +1,8 @@
 class Solution {
-    fun solution(arr: IntArray) =
-        arr.withIndex().filter{it.value==2}.let{
-            if(it.isEmpty()) listOf(-1)
-            else{
-                val s=it[0]
-                val e=it.getOrNull(1)?: return listOf(2)
-                println("${s.index} ${e.index}")
-                arr.slice(s.index..e.index)
-            }
-        }
+    fun solution(arr: IntArray):List<Int>{
+        val temp=arr.withIndex().filter{it.value==2}
+        if(temp.isEmpty()) return listOf(-1)
+        if(temp.size==1) return listOf(2)
+        return arr.slice(temp[0].index..temp.last().index).toList()
+    }
 }
